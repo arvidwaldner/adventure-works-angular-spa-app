@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Custom Bootstrap variable overrides (optional)
+// $primary: #007bff;
+// $secondary: #6c757d;
+
+// Bootstrap is already imported via angular.json
+// If you want to customize Bootstrap variables, uncomment the imports below
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins";
+// @import "~bootstrap/scss/bootstrap";
+
+// Global custom styles
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+// Custom utility classes
+.bg-adventure {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
