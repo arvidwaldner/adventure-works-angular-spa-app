@@ -3,7 +3,7 @@
   <div class="container">
     <a class="navbar-brand" href="#">
       <i class="bi bi-bicycle me-2"></i>
-      Adventure Works SPA
+      Adventure Works
     </a>
     <button 
       class="navbar-toggler" 
@@ -16,16 +16,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Home</a>
+          <a class="nav-link active" href="#home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" href="#departments">Departments</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="#locations">Locations</a>
         </li>
       </ul>
     </div>
@@ -33,68 +30,160 @@
 </nav>
 
 <!-- Hero Section -->
-<div class="bg-adventure text-white py-5">
+<section id="home" class="hero-section bg-adventure text-white d-flex align-items-center" [@heroAnimation]="heroState()">
   <div class="container">
-    <div class="row align-items-center">
+    <div class="row align-items-center h-100">
       <div class="col-lg-6">
-        <h1 class="display-4 fw-bold mb-3">Welcome to {{ title() }}</h1>
-        <p class="lead mb-4">Your Angular SPA with Bootstrap is now ready! This adventure begins with a modern, responsive web application.</p>
+        <h1 class="display-2 fw-bold mb-4">Welcome to {{ title() }}</h1>
         <div class="d-flex gap-3">
-          <button class="btn btn-light btn-lg">
-            <i class="bi bi-rocket-takeoff me-2"></i>
-            Get Started
-          </button>
-          <button class="btn btn-outline-light btn-lg">
-            <i class="bi bi-info-circle me-2"></i>
-            Learn More
-          </button>
+          <a href="#departments" class="btn btn-light btn-lg text-decoration-none">
+            <i class="bi bi-buildings me-2"></i>
+            Departments
+          </a>
+          <a href="#locations" class="btn btn-outline-light btn-lg text-decoration-none">
+            <i class="bi bi-geo-alt me-2"></i>
+            Locations
+          </a>
         </div>
       </div>
       <div class="col-lg-6 text-center">
-        <i class="bi bi-gear-fill display-1 text-white-50"></i>
+        <i class="bi bi-gear-fill" style="font-size: 12rem; color: rgba(255,255,255,0.3);"></i>
       </div>
     </div>
   </div>
-</div>
+  
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-4">
+    <a href="#departments" class="text-white text-decoration-none">
+      <div class="d-flex flex-column align-items-center animate-bounce">
+        <span class="small mb-2">Departments</span>
+        <i class="bi bi-chevron-down fs-4"></i>
+      </div>
+    </a>
+  </div>
+</section>
 
-<!-- Features Section -->
-<div class="container py-5">
-  <div class="row">
-    <div class="col-lg-12 text-center mb-5">
-      <h2 class="display-5 fw-bold text-primary">Features</h2>
-      <p class="text-muted">Everything you need to build amazing applications</p>
+<!-- Departments Section -->
+<section id="departments" class="py-5" #departmentsSection>
+  <!-- Back to Home Indicator -->
+  <div class="scroll-indicator position-absolute top-0 start-50 translate-middle-x mt-4">
+    <a href="#home" class="text-primary text-decoration-none">
+      <div class="d-flex flex-column align-items-center animate-bounce">
+        <i class="bi bi-chevron-up fs-4"></i>
+        <span class="small mt-2">Back to Home</span>
+      </div>
+    </a>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-5">
+        <h2 class="display-5 fw-bold text-primary">Departments</h2>
+        <p class="text-muted">Explore our different departments</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4" [@fadeInOnLoad]="card1StateDepartment()">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-building fs-1 text-primary mb-3"></i>
+            <h5 class="card-title">Sales</h5>
+            <p class="card-text">Our dynamic sales department driving business growth and customer relationships.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" [@fadeInOnLoad]="card2StateDepartment()">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-tools fs-1 text-success mb-3"></i>
+            <h5 class="card-title">Engineering</h5>
+            <p class="card-text">Innovation and technical excellence in product development and solutions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" [@fadeInOnLoad]="card3StateDepartment()">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-people fs-1 text-warning mb-3"></i>
+            <h5 class="card-title">Human Resources</h5>
+            <p class="card-text">Supporting our team members and fostering a positive work environment.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body text-center">
-          <i class="bi bi-lightning-charge-fill fs-1 text-primary mb-3"></i>
-          <h5 class="card-title">Angular 20</h5>
-          <p class="card-text">Built with the latest Angular framework for modern web development.</p>
-        </div>
+  
+  <!-- Scroll Indicator to Locations -->
+  <div class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-4">
+    <a href="#locations" class="text-primary text-decoration-none">
+      <div class="d-flex flex-column align-items-center animate-bounce">
+        <span class="small mb-2">Locations</span>
+        <i class="bi bi-chevron-down fs-4"></i>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Locations Section -->
+<section id="locations" class="py-5 bg-light" #locationsSection>
+  <!-- Back to Departments Indicator -->
+  <div class="scroll-indicator position-absolute top-0 start-50 translate-middle-x mt-4">
+    <a href="#departments" class="text-primary text-decoration-none">
+      <div class="d-flex flex-column align-items-center animate-bounce">
+        <i class="bi bi-chevron-up fs-4"></i>
+        <span class="small mt-2">Departments</span>
+      </div>
+    </a>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-5">
+        <h2 class="display-5 fw-bold text-primary">Locations</h2>
+        <p class="text-muted">Find us around the globe</p>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body text-center">
-          <i class="bi bi-palette-fill fs-1 text-success mb-3"></i>
-          <h5 class="card-title">Bootstrap 5</h5>
-          <p class="card-text">Beautiful, responsive design with Bootstrap CSS framework.</p>
+    <div class="row g-4">
+      <div class="col-md-4" [@fadeInOnLoad]="card1StateLocation()">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-geo-alt fs-1 text-primary mb-3"></i>
+            <h5 class="card-title">Seattle, WA</h5>
+            <p class="card-text">Our headquarters located in the heart of the Pacific Northwest.</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body text-center">
-          <i class="bi bi-phone-fill fs-1 text-warning mb-3"></i>
-          <h5 class="card-title">Responsive</h5>
-          <p class="card-text">Mobile-first design that works on all devices and screen sizes.</p>
+      <div class="col-md-4" [@fadeInOnLoad]="card2StateLocation()">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-geo-alt fs-1 text-success mb-3"></i>
+            <h5 class="card-title">New York, NY</h5>
+            <p class="card-text">East coast operations center serving the Atlantic region.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" [@fadeInOnLoad]="card3StateLocation()">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-geo-alt fs-1 text-warning mb-3"></i>
+            <h5 class="card-title">London, UK</h5>
+            <p class="card-text">European headquarters connecting us to international markets.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  
+  <!-- Back to Home Indicator -->
+  <div class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-4">
+    <a href="#home" class="text-primary text-decoration-none">
+      <div class="d-flex flex-column align-items-center animate-bounce">
+        <span class="small mb-2">Back to Home</span>
+        <i class="bi bi-chevron-up fs-4"></i>
+      </div>
+    </a>
+  </div>
+</section>
 
 <!-- Footer -->
 <footer class="bg-dark text-light py-4 mt-auto">
