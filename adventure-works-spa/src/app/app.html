@@ -64,7 +64,7 @@
 </section>
 
 <!-- Departments Section -->
-<section id="departments" class="py-5">
+<section id="departments" class="py-5" style="padding-bottom: 150px !important;">
   <!-- Back to Home Indicator -->
   <div class="scroll-indicator position-absolute top-0 start-50 translate-middle-x mt-4">
     <a href="#home" class="text-primary text-decoration-none">
@@ -77,44 +77,58 @@
   
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 text-center mb-5">
+      <div class="col-lg-12 text-center mb-5 mt-5">
         <h2 class="display-5 fw-bold text-primary">Departments</h2>
-        <p class="text-muted">Explore our different departments</p>
+        <p class="text-muted">Our departments</p>
       </div>
     </div>
-    <div class="row g-4">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center">
-            <i class="bi bi-building fs-1 text-primary mb-3"></i>
-            <h5 class="card-title">Sales</h5>
-            <p class="card-text">Our dynamic sales department driving business growth and customer relationships.</p>
+    <!-- Loading State -->
+    @if (isLoadingDepartments()) {
+      <div class="row">
+        <div class="col-12 text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading departments...</span>
           </div>
+          <p class="mt-3 text-muted">Loading departments...</p>
         </div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center">
-            <i class="bi bi-tools fs-1 text-success mb-3"></i>
-            <h5 class="card-title">Engineering</h5>
-            <p class="card-text">Innovation and technical excellence in product development and solutions.</p>
+    }
+
+    <!-- Departments Grid -->
+    @if (!isLoadingDepartments() && departments().length > 0) {
+      <div class="row g-4">
+        @for (department of departments(); track department.departmentId; let i = $index) {
+          <div class="col-md-4" 
+               data-aos="fade-up" 
+               [attr.data-aos-delay]="(i % 3) * 200 + 200">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-building fs-1 mb-3"
+                   [class]="'text-secondary'"></i>
+                <h5 class="card-title">{{ department.name }}</h5>
+                <p class="card-text">{{ department.groupName }}</p>                
+              </div>
+            </div>
           </div>
+        }
+      </div>
+    }
+
+    <!-- No Data State -->
+    @if (!isLoadingDepartments() && departments().length === 0) {
+      <div class="row">
+        <div class="col-12 text-center py-5">
+          <i class="bi bi-exclamation-triangle fs-1 text-warning mb-3"></i>
+          <h4>No Departments Found</h4>
+          <p class="text-muted">Unable to load departments data.</p>
         </div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center">
-            <i class="bi bi-people fs-1 text-warning mb-3"></i>
-            <h5 class="card-title">Human Resources</h5>
-            <p class="card-text">Supporting our team members and fostering a positive work environment.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    }
   </div>
   
+  
   <!-- Scroll Indicator to Locations -->
-  <div class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-4">
+  <div class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-5">
     <a href="#locations" class="text-primary text-decoration-none">
       <div class="d-flex flex-column align-items-center animate-bounce">
         <span class="small mb-2">Locations</span>
@@ -125,7 +139,7 @@
 </section>
 
 <!-- Locations Section -->
-<section id="locations" class="py-5 bg-light">
+<section id="locations" class="py-5 bg-light" style="padding-bottom: 150px !important;">
   <!-- Back to Departments Indicator -->
   <div class="scroll-indicator position-absolute top-0 start-50 translate-middle-x mt-4">
     <a href="#departments" class="text-primary text-decoration-none">
@@ -138,44 +152,58 @@
   
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 text-center mb-5">
+      <div class="col-lg-12 text-center mb-5 mt-5">
         <h2 class="display-5 fw-bold text-primary">Locations</h2>
-        <p class="text-muted">Find us around the globe</p>
+        <p class="text-muted">Our locations</p>
       </div>
     </div>
-    <div class="row g-4">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center">
-            <i class="bi bi-geo-alt fs-1 text-primary mb-3"></i>
-            <h5 class="card-title">Seattle, WA</h5>
-            <p class="card-text">Our headquarters located in the heart of the Pacific Northwest.</p>
+    <!-- Loading State -->
+    @if (isLoadingLocations()) {
+      <div class="row">
+        <div class="col-12 text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading locations...</span>
           </div>
+          <p class="mt-3 text-muted">Loading locations...</p>
         </div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center">
-            <i class="bi bi-geo-alt fs-1 text-success mb-3"></i>
-            <h5 class="card-title">New York, NY</h5>
-            <p class="card-text">East coast operations center serving the Atlantic region.</p>
+    }
+
+    <!-- Locations Grid -->
+    @if (!isLoadingLocations() && locations().length > 0) {
+      <div class="row g-4">
+        @for (location of locations(); track location.locationId; let i = $index) {
+          <div class="col-md-4" 
+               data-aos="fade-up" 
+               [attr.data-aos-delay]="(i % 3) * 200 + 200">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body text-center">
+                <i class="bi bi-building fs-1 mb-3"
+                   [class]="'text-secondary'"></i>
+                <h5 class="card-title">{{ location.name }}</h5>
+                <p class="card-text">CostRate: {{ location.costRate }}</p>
+                <p class="card-text">Availability: {{ location.availability }}%</p>
+              </div>
+            </div>
           </div>
+        }
+      </div>
+    }
+
+    <!-- No Data State -->
+    @if (!isLoadingLocations() && locations().length === 0) {
+      <div class="row">
+        <div class="col-12 text-center py-5">
+          <i class="bi bi-exclamation-triangle fs-1 text-warning mb-3"></i>
+          <h4>No Locations Found</h4>
+          <p class="text-muted">Unable to load locations data.</p>
         </div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body text-center">
-            <i class="bi bi-geo-alt fs-1 text-warning mb-3"></i>
-            <h5 class="card-title">London, UK</h5>
-            <p class="card-text">European headquarters connecting us to international markets.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    }
   </div>
   
   <!-- Back to Home Indicator -->
-  <div class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-4">
+  <div class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-5">
     <a href="#home" class="text-primary text-decoration-none">
       <div class="d-flex flex-column align-items-center animate-bounce">
         <span class="small mb-2">Back to Home</span>

@@ -1,12 +1,14 @@
 import { Component, signal, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { heroAnimation } from './animations/startup-animations';
+import { DepartmentsService, Department } from './services/departments';
+import { LocationsService, Location } from './services/locations';
 import AOS from 'aos';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   animations: [heroAnimation]
@@ -14,8 +16,19 @@ import AOS from 'aos';
 export class App implements OnInit {
   protected readonly title = signal('Adventure Works');
   protected heroState = signal<'hidden' | 'visible'>('hidden');
+  
+  // Departments data
+  protected departments = signal<Department[]>([]);
+  protected isLoadingDepartments = signal<boolean>(false);
+  
+  protected locations = signal<Location[]>([]);
+  protected isLoadingLocations = signal<boolean>(false);
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private departmentsService: DepartmentsService,
+    private locationsService: LocationsService
+  ) {}
   
   ngOnInit() {
     // Initialize AOS (Animate On Scroll)
@@ -29,7 +42,42 @@ export class App implements OnInit {
       });
     }
     
+    // Load departments data
+    this.loadDepartments();
+
+    //Load locations data
+    this.loadLocations();
+    
     // Hero section animation (keep this one custom)
     setTimeout(() => this.heroState.set('visible'), 200);
+  }
+
+  private loadDepartments() {
+    this.isLoadingDepartments.set(true);
+    
+    this.departmentsService.getDepartments().subscribe({
+      next: (departments) => {
+        this.departments.set(departments);
+        this.isLoadingDepartments.set(false);
+      },
+      error: (error) => {
+        console.error('Failed to load departments:', error);
+        this.isLoadingDepartments.set(false);
+      }
+    });
+  }
+  
+  private loadLocations() {
+    this.isLoadingLocations.set(true);
+    this.locationsService.getLocations().subscribe({
+      next: (locations) => {
+        this.locations.set(locations);
+        this.isLoadingLocations.set(false);
+      },
+      error: (error) => {
+        console.error('Failed to load locations:', error);
+        this.isLoadingLocations.set(false);
+      }
+    });
   }
 }
