@@ -64,7 +64,7 @@
 </section>
 
 <!-- Departments Section -->
-<section id="departments" class="py-5" #departmentsSection>
+<section id="departments" class="py-5">
   <!-- Back to Home Indicator -->
   <div class="scroll-indicator position-absolute top-0 start-50 translate-middle-x mt-4">
     <a href="#home" class="text-primary text-decoration-none">
@@ -83,7 +83,7 @@
       </div>
     </div>
     <div class="row g-4">
-      <div class="col-md-4" [@fadeInOnLoad]="card1StateDepartment()">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="card h-100 shadow-sm">
           <div class="card-body text-center">
             <i class="bi bi-building fs-1 text-primary mb-3"></i>
@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" [@fadeInOnLoad]="card2StateDepartment()">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
         <div class="card h-100 shadow-sm">
           <div class="card-body text-center">
             <i class="bi bi-tools fs-1 text-success mb-3"></i>
@@ -101,7 +101,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" [@fadeInOnLoad]="card3StateDepartment()">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
         <div class="card h-100 shadow-sm">
           <div class="card-body text-center">
             <i class="bi bi-people fs-1 text-warning mb-3"></i>
@@ -125,7 +125,7 @@
 </section>
 
 <!-- Locations Section -->
-<section id="locations" class="py-5 bg-light" #locationsSection>
+<section id="locations" class="py-5 bg-light">
   <!-- Back to Departments Indicator -->
   <div class="scroll-indicator position-absolute top-0 start-50 translate-middle-x mt-4">
     <a href="#departments" class="text-primary text-decoration-none">
@@ -144,7 +144,7 @@
       </div>
     </div>
     <div class="row g-4">
-      <div class="col-md-4" [@fadeInOnLoad]="card1StateLocation()">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
         <div class="card h-100 shadow-sm">
           <div class="card-body text-center">
             <i class="bi bi-geo-alt fs-1 text-primary mb-3"></i>
@@ -153,7 +153,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" [@fadeInOnLoad]="card2StateLocation()">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
         <div class="card h-100 shadow-sm">
           <div class="card-body text-center">
             <i class="bi bi-geo-alt fs-1 text-success mb-3"></i>
@@ -162,7 +162,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4" [@fadeInOnLoad]="card3StateLocation()">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
         <div class="card h-100 shadow-sm">
           <div class="card-body text-center">
             <i class="bi bi-geo-alt fs-1 text-warning mb-3"></i>
