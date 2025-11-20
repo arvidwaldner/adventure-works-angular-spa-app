@@ -2,6 +2,7 @@ import { Component, signal, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { heroAnimation } from './animations/startup-animations';
+import { cardHover } from './animations/animations';
 import { DepartmentsService, Department } from './services/departments';
 import { LocationsService, Location } from './services/locations';
 import AOS from 'aos';
@@ -11,7 +12,7 @@ import AOS from 'aos';
   imports: [RouterOutlet, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
-  animations: [heroAnimation]
+  animations: [heroAnimation, cardHover]
 })
 export class App implements OnInit {
   protected readonly title = signal('Adventure Works');
@@ -23,6 +24,9 @@ export class App implements OnInit {
   
   protected locations = signal<Location[]>([]);
   protected isLoadingLocations = signal<boolean>(false);
+  
+  // Hover states for card
+  protected hoveredCard = signal<string | null>(null);  
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,

@@ -120,3 +120,18 @@ export const cardFlip = trigger('cardFlip', [
   state('back', style({ transform: 'rotateY(180deg)' })),
   transition('front <=> back', animate('600ms ease-in-out'))
 ]);
+
+// Card Hover Animation
+export const cardHover = trigger('cardHover', [
+  state('normal', style({ 
+    transform: 'scale(1)',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    borderColor: 'transparent'
+  })),
+  state('hover', style({ 
+    transform: 'scale(1.05)',
+    boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+    borderColor: '#007bff'
+  })),
+  transition('normal <=> hover', animate('250ms ease-in-out'))
+]);
